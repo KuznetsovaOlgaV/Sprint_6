@@ -39,4 +39,6 @@ public class CatTest {
         verify(predatorMock).eatMeat();
         assertEquals(expected, result);
     }
+
+
 }

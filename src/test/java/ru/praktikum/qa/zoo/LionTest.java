@@ -51,4 +51,6 @@ public class LionTest {
         verify(predatorMock).eatMeat();
         assertEquals(expected, result);
     }
+
+
 }
