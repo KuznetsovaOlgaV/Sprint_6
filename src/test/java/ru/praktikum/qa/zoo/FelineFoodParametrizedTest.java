@@ -38,6 +38,4 @@ public class FelineFoodParametrizedTest {
         Feline feline = new Feline();
         assertEquals(expected, feline.getFood(hours), 0.001); // 0,001 для точности
     }
-
-
 }

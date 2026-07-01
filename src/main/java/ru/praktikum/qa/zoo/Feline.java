@@ -25,6 +25,4 @@ public class Feline extends Animal implements Predator {
     public double getFood(int hours) {
         return hours * 2.5;
     }
-
-
 }

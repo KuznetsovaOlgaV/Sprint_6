@@ -37,6 +37,4 @@ public class FelineTest {
         assertTrue(food.contains("Птицы"));
         assertTrue(food.contains("Рыба"));
     }
-
-
 }
