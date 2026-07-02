@@ -21,7 +21,7 @@ public class FelineFoodParametrizedTest {
     }
 
     @Parameterized.Parameters
-    public static Collection<Object[]> data() {
+    public static Collection<Object[]> portions() { //задумано - еда -порции (число) за время
         return Arrays.asList(new Object[][]{
                 {0, 0.0},
                 {1, 2.5},
@@ -34,9 +34,8 @@ public class FelineFoodParametrizedTest {
     }
 
     @Test
-    public void getFood_parametrized() throws Exception {
+    public void getFooParametrized() {
         Feline feline = new Feline();
         assertEquals(expected, feline.getFood(hours), 0.001); // 0,001 для точности
     }
-
 }

@@ -14,30 +14,44 @@ import static org.mockito.Mockito.*;
 public class CatTest {
 
     @Mock
-    private Predator predatorMock;
+    private Feline felineMock;
 
     private Cat cat;
 
     @Before
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        cat = new Cat(predatorMock);
+        cat = new Cat(felineMock);
     }
 
     @Test
-    public void getSound_returnsМяу() {
+    public void getSoundReturnsMeow() {
         assertEquals("Мяу", cat.getSound());
     }
 
     @Test
-    public void getFood_delegatesToPredator() throws Exception {
+    public void getFoodReturnsExpectedList() throws Exception {
         List<String> expected = Arrays.asList("Животные", "Птицы", "Рыба");
-        when(predatorMock.eatMeat()).thenReturn(expected);
+        when(felineMock.eatMeat()).thenReturn(expected);
 
         List<String> result = cat.getFood();
 
-        verify(predatorMock).eatMeat();
         assertEquals(expected, result);
     }
 
+    @Test
+    public void getFoodDelegatesToFeline() throws Exception {
+        when(felineMock.eatMeat()).thenReturn(Arrays.asList("Животные"));
+
+        cat.getFood();
+
+        verify(felineMock).eatMeat();
+    }
+
+    @Test(expected = Exception.class) // для исключения, чтобы 100% покрыть
+    public void getFoodExceptionFromFeline() throws Exception {
+        when(felineMock.eatMeat()).thenThrow(new Exception("Ошибка"));
+
+        cat.getFood();
+    }
 }

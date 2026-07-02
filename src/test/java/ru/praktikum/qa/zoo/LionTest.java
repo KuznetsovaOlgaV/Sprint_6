@@ -27,29 +27,39 @@ public class LionTest {
     }
 
     @Test
-    public void doesHaveMane_male() {
+    public void doesHaveManeMale() {
         assertTrue(lionMale.doesHaveMane());
     }
 
     @Test
-    public void doesHaveMane_female() {
+    public void doesHaveManeFemale() {
         assertFalse(lionFemale.doesHaveMane());
     }
 
     @Test(expected = Exception.class)
-    public void constructor_throwsForInvalidSex() throws Exception {
+    public void constructorThrowsForInvalidSex() throws Exception {
         new Lion("Неизвестный", null);
     }
 
     @Test
-    public void getFood_delegatesToPredator() throws Exception {
+    public void getFoodReturnsExpectedList() throws Exception {
         List<String> expected = Arrays.asList("Животные", "Птицы", "Рыба");
         when(predatorMock.eatMeat()).thenReturn(expected);
-
         List<String> result = lionMale.getFood();
-
-        verify(predatorMock).eatMeat();
         assertEquals(expected, result);
     }
 
+    @Test
+    public void getFoodDelegatesToPredator() throws Exception {
+        when(predatorMock.eatMeat()).thenReturn(Arrays.asList("Животные"));
+        lionMale.getFood();
+        verify(predatorMock).eatMeat();
+    }
+
+    @Test(expected = Exception.class)  // для исключения, чтобы 100% покрыть
+    public void getFoodExceptionFromPredator() throws Exception {
+        when(predatorMock.eatMeat()).thenThrow(new Exception("Ошибка"));
+
+        lionMale.getFood();
+    }
 }

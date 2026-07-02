@@ -9,25 +9,25 @@ import static org.junit.Assert.*;
 public class FelineTest {
 
     @Test
-    public void getFamily_returnsCorrectString() {
+    public void getFamilyReturnsCorrectString() {
         Feline feline = new Feline();
         assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
-    public void getKittens_defaultReturnsOne() {
+    public void getKittensDefaultReturnsOne() {
         Feline feline = new Feline();
         assertEquals(1, feline.getKittens());
     }
 
     @Test
-    public void getKittens_withCountReturnsCorrectValue() {
+    public void getKittensWithCountReturnsCorrectValue() {
         Feline feline = new Feline();
         assertEquals(5, feline.getKittens(5));
     }
 
     @Test
-    public void eatMeat_returnsFoodList() throws Exception {
+    public void eatMeatReturnsFoodList() throws Exception {
         Feline feline = new Feline();
         List<String> food = feline.eatMeat();
 
@@ -37,5 +37,4 @@ public class FelineTest {
         assertTrue(food.contains("Птицы"));
         assertTrue(food.contains("Рыба"));
     }
-
 }
